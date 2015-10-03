@@ -14,9 +14,7 @@ public class AuthorizationService {
     void startAuthorization() {
         if (isLogin()) {
             login();
-        }
-        else
-        {
+        } else {
             creatUser();
             //login();
         }
@@ -31,22 +29,17 @@ public class AuthorizationService {
         Scanner scanner = new Scanner(System.in);
         String name = scanner.next();
 
-        if (userStore.isUserExist(name))
-        {System.out.println("Enter your Password!");
+        if (userStore.isUserExist(name)) {
+            System.out.println("Enter your Password!");
             String pass = scanner.next();
 
-            if(userStore.getUser(name,pass)!=null)
-            {
+            if (userStore.getUser(name, pass) != null) {
                 System.out.println("Congrats!");
-            }
-            else
-            {
+            } else {
                 System.out.println(" Password is not True:(, try to join !");
                 login();
             }
-        }
-        else
-        {
+        } else {
             System.out.println("You dont't find in our base,Please auttorization");
             startAuthorization();
         }
@@ -65,10 +58,10 @@ public class AuthorizationService {
         String name = scanner.next();
         System.out.println("Enter your Password!");
         String pass = scanner.next();
-        User newUser = new User(name,pass);
+        User newUser = new User(name, pass);
         userStore.addUser(newUser);
 
-        System.out.println("Please, join to as!");
+        System.out.println("Please, join to us!");
         login();
         return null;
     }
@@ -77,21 +70,24 @@ public class AuthorizationService {
         System.out.println("Do you want Autorization or Join? if you want Autorizatio,press a , else prees j!");
         Scanner scanner = new Scanner(System.in);
         String auto = scanner.next();
+        if (auto.equals("a") == false && auto.equals("j") == false) {
+            System.out.println("Invalid input, please try again!");
+            isLogin();
+        }
 
-        if(auto!=null && auto.equals("j"))
-        {
+        if (auto != null && auto.equals("j")) {
             return true;
         }
 
 
-        if(auto!=null && auto.equals("a"))
-        {
+        if (auto != null && auto.equals("a")) {
 
             return false;
         }
-        else
-        {
+
+         else {
+
             return false;
-        }
+             }
     }
 }
