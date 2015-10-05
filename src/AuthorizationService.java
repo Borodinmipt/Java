@@ -56,6 +56,11 @@ public class AuthorizationService {
         System.out.println("Enter your Name!");
         Scanner scanner = new Scanner(System.in);
         String name = scanner.next();
+        if(userStore.isUserExist(name))
+        {
+            System.out.println("name is busy, write smh another");
+            creatUser();
+        }
         System.out.println("Enter your Password!");
         String pass = scanner.next();
         User newUser = new User(name, pass);
