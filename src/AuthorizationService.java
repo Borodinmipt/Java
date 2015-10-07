@@ -52,19 +52,20 @@ public class AuthorizationService {
         // 1. Ask for name
         // 2. Ask for pass
         // 3. Add user to UserStore: userStore.addUser(user)
-
+        WorkWithFile workfile = new WorkWithFile();
         System.out.println("Enter your Name!");
         Scanner scanner = new Scanner(System.in);
         String name = scanner.next();
-        if(userStore.isUserExist(name))
-        {
+        if (userStore.isUserExist(name)) {
             System.out.println("name is busy, write smh another");
             creatUser();
         }
+
         System.out.println("Enter your Password!");
         String pass = scanner.next();
         User newUser = new User(name, pass);
         userStore.addUser(newUser);
+        workfile.WriteUserInFile(workfile.FILE_NAME, newUser);
 
         System.out.println("Please, join to us!");
         login();
@@ -88,11 +89,9 @@ public class AuthorizationService {
         if (auto != null && auto.equals("a")) {
 
             return false;
-        }
-
-         else {
+        } else {
 
             return false;
-             }
+        }
     }
 }
